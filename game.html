@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Love Arcade 💕</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(180deg, #fce7f3 0%, #fbcfe8 50%, #f472b6 100%);
+      --card-bg: #ec4899;
+      --text-dark: #831843;
+      --accent-pink: #be185d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      padding: 30px 15px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--accent-pink);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    /* Tabs */
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .tab-btn {
+      background: white;
+      color: var(--accent-pink);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--card-bg);
+      color: white;
+    }
+
+    /* Game Panels */
+    .game-panel {
+      display: none;
+      background: white;
+      border-radius: 24px;
+      padding: 30px 20px;
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.25);
+    }
+
+    .game-panel.active {
+      display: block;
+    }
+
+    /* Quiz Game */
+    .quiz-option {
+      display: block;
+      width: 100%;
+      background: #fce7f3;
+      color: var(--text-dark);
+      border: 2px solid #f472b6;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .quiz-option:hover {
+      background: #fbcfe8;
+    }
+
+    /* Heart Catcher Game Canvas */
+    #game-canvas {
+      background: #fff0f6;
+      border-radius: 16px;
+      border: 2px solid var(--card-bg);
+      touch-action: none;
+      max-width: 100%;
+    }
+
+    .action-btn {
+      background: var(--card-bg);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-top: 15px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    /* Lock Game */
+    .code-input {
+      width: 160px;
+      font-size: 1.5rem;
+      text-align: center;
+      padding: 8px;
+      border-radius: 12px;
+      border: 2px solid var(--card-bg);
+      margin: 15px 0;
+      letter-spacing: 4px;
+    }
+
+    .nav-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--accent-pink);
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>The Love Arcade</h1>
+    <p class="subtitle">Complete the mini-games made just for you ♥</p>
+
+    <!-- Navigation Tabs -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchGame(0)">1. Memory Quiz</button>
+      <button class="tab-btn" onclick="switchGame(1)">2. Heart Catcher</button>
+      <button class="tab-btn" onclick="switchGame(2)">3. Secret Vault</button>
+    </div>
+
+    <!-- GAME 1: QUIZ -->
+    <div class="game-panel active">
+      <h2 style="color: var(--accent-pink); margin-bottom: 15px;" id="quiz-question">Question 1</h2>
+      <div id="quiz-options"></div>
+      <p id="quiz-feedback" style="margin-top: 15px; font-weight: bold;"></p>
+    </div>
+
+    <!-- GAME 2: HEART CATCHER -->
+    <div class="game-panel">
+      <h2 style="color: var(--accent-pink); margin-bottom: 10px;">Catch My Love!</h2>
+      <p style="font-size: 0.85rem; margin-bottom: 10px;">Move your mouse or slide your finger to catch falling hearts.</p>
+      <canvas id="game-canvas" width="320" height="350"></canvas>
+      <div>
+        <button class="action-btn" onclick="startGame()">Start Game</button>
+      </div>
+    </div>
+
+    <!-- GAME 3: SECRET VAULT -->
+    <div class="game-panel">
+      <h2 style="color: var(--accent-pink); margin-bottom: 10px;">Unlock My Heart</h2>
+      <p style="font-size: 0.9rem;">Enter our anniversary date (MMDD or DDMM) to open the secret message!</p>
+      <input type="text" id="passcode" class="code-input" placeholder="0904" maxlength="4">
+      <br>
+      <button class="action-btn" onclick="unlockSecret()">Unlock</button>
+      <div id="secret-message" style="display:none; margin-top: 20px; font-weight: bold; color: var(--accent-pink); line-height: 1.6;">
+        🎉 You unlocked it! <br> "No matter what passcode locking my heart, it will always belong to you. Happy Anniversary on September 4th!"
+      </div>
+    </div>
+
+    <a href="index.html" class="nav-link">← Back to Anniversary Home Page</a>
+  </div>
+
+  <script>
+    /* Tab Switcher Logic */
+    function switchGame(index) {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const panels = document.querySelectorAll('.game-panel');
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+        panels[i].classList.toggle('active', i === index);
+      });
+    }
+
+    /* GAME 1: QUIZ LOGIC */
+    const questions = [
+      {
+        q: "What is our special anniversary date?",
+        options: ["August 14th", "September 4th", "October 12th"],
+        answer: 1
+      },
+      {
+        q: "How much do I love you?",
+        options: ["A lot", "To the moon & back", "More than words can ever say"],
+        answer: 2
+      },
+      {
+        q: "What is my absolute favorite thing about you?",
+        options: ["Your beautiful smile", "Your sweet heart", "Literally everything"],
+        answer: 2
+      }
+    ];
+
+    let currentQ = 0;
+    function loadQuiz() {
+      const q = questions[currentQ];
+      document.getElementById('quiz-question').innerText = q.q;
+      const optionsContainer = document.getElementById('quiz-options');
+      optionsContainer.innerHTML = '';
+      q.options.forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.innerText = opt;
+        btn.onclick = () => selectAnswer(index);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(index) {
+      const feedback = document.getElementById('quiz-feedback');
+      if (index === questions[currentQ].answer) {
+        feedback.innerText = "Correct! ❤️";
+        feedback.style.color = "green";
+        setTimeout(() => {
+          currentQ++;
+          if (currentQ < questions.length) {
+            loadQuiz();
+            feedback.innerText = "";
+          } else {
+            document.getElementById('quiz-question').innerText = "Quiz Completed! 🏆";
+            document.getElementById('quiz-options').innerHTML = "<p>You know us so well! You win all my love!</p>";
+            feedback.innerText = "";
+          }
+        }, 1000);
+      } else {
+        feedback.innerText = "Try again, my love! 😘";
+        feedback.style.color = "red";
+      }
+    }
+    loadQuiz();
+
+    /* GAME 2: CATCHER LOGIC */
+    const canvas = document.getElementById('game-canvas');
+    const ctx = canvas.getContext('2d');
+    let basket = { x: 130, width: 60, height: 15 };
+    let hearts = [];
+    let score = 0;
+    let gameInterval;
+    let isRunning = false;
+
+    function startGame() {
+      if (isRunning) return;
+      score = 0;
+      hearts = [];
+      isRunning = true;
+      gameInterval = setInterval(updateGame, 20);
+      setTimeout(endGame, 15000); // 15 seconds run time
+    }
+
+    function updateGame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw Basket
+      ctx.fillStyle = '#ec4899';
+      ctx.fillRect(basket.x, canvas.height - 20, basket.width, basket.height);
+
+      // Spawn Hearts
+      if (Math.random() < 0.05) {
+        hearts.push({ x: Math.random() * (canvas.width - 20), y: 0, speed: 2 + Math.random() * 3 });
+      }
+
+      // Draw & Move Hearts
+      ctx.fillStyle = '#be185d';
+      ctx.font = '16px serif';
+      hearts.forEach((h, i) => {
+        h.y += h.speed;
+        ctx.fillText('♥', h.x, h.y);
+
+        // Collision check
+        if (h.y >= canvas.height - 20 && h.x >= basket.x && h.x <= basket.x + basket.width) {
+          score++;
+          hearts.splice(i, 1);
+        }
+      });
+
+      // Score Display
+      ctx.fillStyle = '#831843';
+      ctx.font = 'bold 14px sans-serif';
+      ctx.fillText("Hearts Caught: " + score, 10, 20);
+    }
+
+    function endGame() {
+      clearInterval(gameInterval);
+      isRunning = false;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#be185d';
+      ctx.font = 'bold 18px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText("Time's Up!", canvas.width / 2, 160);
+      ctx.fillText("You caught " + score + " hearts! 💕", canvas.width / 2, 190);
+      ctx.textAlign = 'left';
+    }
+
+    // Controls
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      basket.x = e.clientX - rect.left - basket.width / 2;
+    });
+    canvas.addEventListener('touchmove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      basket.x = e.touches[0].clientX - rect.left - basket.width / 2;
+    });
+
+    /* GAME 3: LOCK LOGIC */
+    function unlockSecret() {
+      const val = document.getElementById('passcode').value.trim();
+      // Accepts 0904 or 0409
+      if (val === "0904" || val === "0409" || val === "904" || val === "409") {
+        document.getElementById('secret-message').style.display = 'block';
+      } else {
+        alert("Incorrect code! Hint: It's our anniversary date (Sep 4th) 🤫");
+      }
+    }
+  </script>
+</body>
+</html>
