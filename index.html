@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Anniversary, My Love! 💕</title>
+  <style>
+    /* Romantic Pink Palette */
+    :root {
+      --bg-gradient: linear-gradient(180deg, #fce7f3 0%, #fbcfe8 50%, #f472b6 100%);
+      --card-bg: #ec4899;
+      --card-overlay: rgba(219, 39, 119, 0.7);
+      --pill-bg: #f472b6;
+      --text-dark: #831843;
+      --text-light: #ffffff;
+      --accent-white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+        max-width: 900px;
+      width: 100%;
+    }
+
+    /* Header / Hero Section */
+    .hero-top {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-title h1 {
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #be185d;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 10px;
+    }
+
+    .hero-title p {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    /* Anniversary Countdown Timer */
+    .timer-container {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 40px;
+      border: 2px solid white;
+    }
+    
+.surprise-box h3 {
+    font-size: 1.1rem;
+    color: #f7f7f7;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+#love-reason {
+    font-size: 1.05rem;
+    font-style: italic;
+    min-height: 50px;
+    transition: opacity 0.2s ease;
+}
+
+.pink-btn {
+    background: #ffffff;
+    color: rgb(222, 50, 50);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.pink-btn:hover {
+    background: #9e4957;
+}
+
+
+    .timer-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #be185d;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .time-box {
+      background: var(--card-bg);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      min-width: 75px;
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+    .time-box label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    /* Photo Grid Section */
+    .section-header {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #be185d;
+      margin: 50px 0 25px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .feature-card {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px;
+      color: white;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      line-height: 1.4;
+      opacity: 0.95;
+    }
+
+    .card-heart {
+      align-self: flex-end;
+      font-size: 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Love Letter Showcase */
+    .showcase {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 50px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .image-stack {
+      display: grid;
+      grid-template-columns: repeat(2, 110px);
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .img-box {
+      width: 110px;
+      height: 110px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.2rem;
+    }
+
+    .showcase-text h3 {
+      font-size: 1.6rem;
+      color: #be185d;
+      margin-bottom: 15px;
+    }
+
+    .showcase-text p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-dark);
+    }
+
+    /* Reasons List */
+    .reasons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 50px;
+    }
+
+    .reason-box {
+      background: rgba(255, 255, 255, 0.8);
+      border-left: 6px solid var(--card-bg);
+      padding: 18px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* Interactive Love Meter / Bottom Block */
+    .rules-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 40px 30px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 15px 30px rgba(236, 72, 153, 0.4);
+    }
+
+    .rules-card h2 {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .love-btn {
+      background: white;
+      color: var(--card-bg);
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.2s;
+      margin-bottom: 25px;
+    }
+
+    .love-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .rule-box {
+      background: white;
+      color: var(--text-dark);
+      padding: 20px;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .card-grid, .rules-grid {
+        grid-template-columns: 1fr;
+      }
+      .showcase {
+        flex-direction: column;
+        text-align: center;
+      }
+      .countdown {
+        gap: 10px;
+      }
+      .time-box {
+        min-width: 60px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Hero Header -->
+    <div class="hero-top">
+      <div class="hero-title">
+        <h1>Happy Anniversary!</h1>
+        <p>Celebrating our special day — September 4th ♥</p>
+      </div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="timer-container">
+      <div class="timer-title" id="timer-label">Counting Down to September 4th</div>
+      <div class="countdown">
+        <div class="time-box"><span id="days">00</span><label>Days</label></div>
+        <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
+        <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
+        <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
+      </div>
+    </div>
+
+    <!-- Memory Highlights Grid -->
+    <h2 class="section-header">Favorite Memories With You</h2>
+    <div class="card-grid">
+      <div class="feature-card">
+        <div>
+          <h3>How It Started</h3>
+          <p>Jab humari pehli baar baat hui thi, tab mujhe nahi pata tha ke yeh ek choti si conversation meri zindagi ka sab se khoobsurat chapter ban jayegi. Us pehle din se le kar aaj tak, aap ke sath spent kiya hua har single second mera favorite hai. Chahe hum kisi nayi jagah trip par hon ya ghar par sakoon se baithe hon, aap ke sath har moment ek magical safar lagta hai. Thank you for being my favorite person to talk to, my best travel partner, aur meri poori duniya. Yeh toh bas humari story ki shuruaat hai</p>
+        </div>
+        <div class="card-heart">♥</div>
+      </div>
+
+      <div class="feature-card">
+        <div>
+          <h3>Our Adventures</h3>
+          <p>Humari pehli mulaqat se le kar aaj tak, zindagi ka har ek din ek khoobsurat safar ban gaya hai. Chahe hum kisi nayi jagah ki sair kar rahe hon, naye raste explore kar rahe hon, ya phir ghar par sakoon se ek doosre ke sath waqt guzar rahe hon—aap ke sath bitaya har ek lamha ek aisa yaadgaar safar lagta hai jo dil ke sab se kareeb hai. Yeh pichle 6 mahine kitni tezi se guzar gaye pata hi nahi chala, kyun ke jab aap sath hoti hain toh har din khoobsurat lagta hai. Aap sirf meri hamsafar nahi, meri poori duniya hain.</p>
+        </div>
+        <div class="card-heart">✨</div>
+      </div>
+
+      <div class="feature-card">
+        <div>
+          <h3>Looking Ahead</h3>
+          <p>ab main peeche dekhta hoon, toh lagta hai pichle 6 mahine ek haseen sapne ki tarah guzar gaye. Aap ke sath har moment ek aisa unforgettable trip ban jata hai jise main baar baar jeena chahta hoon. Aur jab main aage dekhta hoon, toh mujhe sirf sukoon aur khushi nazar aati hai. Naye adventures, nayi jaghein, aur aane wale hazaaron aam se din—main har ek second aap ke sath bitane ke liye tayyar hoon. Thank you for making my past and present so beautiful, aur humare future ko itna bright banane ke liye. Here's to our forever.</p>
+        </div>
+        <div class="card-heart">🌹</div>
+      </div>
+    </div>
+
+    <!-- Personal Love Letter Showcase -->
+    <div class="showcase">
+      <div class="image-stack">
+        <div class="img-box">💖</div>
+        <div class="img-box">🌸</div>
+        <div class="img-box">💌</div>
+        <div class="img-box">🎁</div>
+      </div>
+      <div class="showcase-text">
+        <h3>To the Love of My Life</h3>
+        <p>Meri pyari wifey, humari pehli mulaqat se le kar pichle 6 mahino ke har ek moment tak, aap ke sath guzra har ek second meri zindagi ka sab se haseen hissa raha hai. Pehli conversation se jo safar shuru hua tha, aaj woh meri poori duniya ban chuka hai. Chahe hum kisi nayi jagah travel kar rahe hon ya ghar par sakoon se ek doosre ke sath baithe hon, aap ke sath bitaya har lamha ek unforgettable trip jaisa lagta hai. Waise aap ki choti si height aur yeh pyare se chubby cheeks dekh kar kabhi kabhi dil karta hai ke aap ko pocket mein daal kar ghoomoon! Meri choti si doll, thodi si choti height aur thode se gol-moll cheeks ke sath aap duniya ki sab se pyari larki lagti hain. Jab aap gusse mein mujhe ghoorti hain ya gussa dikhati hain, tab toh aap ka yeh cute sa chehra aur bhi zyada pyara lagta hai.</p> 
+
+<q>          facial features aur yeh cute sa noor, <br>
+Dil karta hai dekhta rahoon apko haroor  <br>
+ap choti si, pyari si, meri zindagi ka roop, <br>
+Thand ki meethi dhoop ho ap, dil ke bohot khoob.</q>
+<p>
+Lekin sach toh yeh hai ke aap sirf cute nahi hain, aap ka dil is se bhi zyada khoobsurat hai. Jis tarah aap mera khayal rakhti hain, meri choti choti zarooraton ka dhyan rakhti hain, aur har waqt mujhe sambhal kar rakhti hain, us ke liye mere paas shukriya ke alfaz kam hain. Aap ki care aur aap ka pyar hi hai jo mere har din ko khas banata hai. Aage aane waali poori zindagi mein mujhe aap ke sath aise hi hazaaron naye safar tay karne hain aur aane wale har ek kal ko aap ke sath jeena hai. You are my home, my favorite travel partner, and my whole heart</p>
+      </div>
+    </div>
+
+    <!-- 3 Things I Love About You -->
+    <h2 class="section-header">Fun Games For My Bederya</h2>
+    <div class="reasons-container">
+      <a href="kid-game.html" style="text-decoration: none;">
+       <div class="reason-box" >1. Want to Predict our future come baby (click this ♥)</div></a>
+       <a  href="game.html" style="text-decoration: none;">
+      <div class="reason-box">2. 🎮 Play The Love Arcade (click this ♥)</div></a>
+       <a  href="world-game.html" style="text-decoration: none;">
+      <div class="reason-box">3. 🎮 Play The word game (click this ♥)</div></a>
+      <a  href="bold-game.html" style="text-decoration: none;">
+      <div class="reason-box">4. 🎮 Play The bold game but you have to do everything if yor are agree on this then click it. </div>
+      </a>
+    </div>
+
+    <!-- Interactive Love Section -->
+     <!-- Interactive Love Section & Navigation -->
+    <div class="rules-card">
+      <h2>HOW MUCH DO I LOVE YOU?</h2>
+      
+      <!-- Existing Love Meter Button -->
+      <button class="love-btn" onclick="showLoveMsg()">Click to Check Love Meter ↗</button>
+      <p id="love-message" style="display:none; font-size: 1.2rem; margin-bottom: 25px; font-weight: bold;"></p>
+      <a href="game.html" class="love-btn" style="display: inline-block; text-decoration: none; background: #ec4899; color: white; margin-left: 10px;">
+  
+</a>
+
+      <!-- NEW GALLERY BUTTON -->
+      <div style="margin-bottom: 30px;">
+        <a href="gallery.html" class="love-btn" style="display: inline-block; text-decoration: none; background: #be185d; color: white;">
+          🌸 Open Her Beauty Gallery (Click mee) ↗
+        </a>
+      </div>
+<div class="rules-card">
+      <h2>What you have unlock after spending a whole year with me</h2>
+      <div class="rules-grid">
+        <div class="rule-box">
+          1. Infinite Hugs & Kisses
+        </div>
+        <div class="rule-box">
+          2. Lifetime Guarantee
+        </div>
+        <div class="rule-box">
+          3. Always & Forever
+        </div>
+        
+      </div>
+      <div class="surprise-box">
+                <h3 class="some">RESONS WHY I LOVE YOU</h3>
+                <p id="love-reason">Click the button below to see one of the million reasons why I love you.</p>
+                <button class="btn pink-btn" onclick="generateReason()">Click Me ✨</button>
+            </div>
+    </div>
+    
+        </div>
+
+  </div>
+
+  <script>
+    // September 4th Live Countdown Logic
+    function updateCountdown() {
+      const now = new Date();
+      let targetYear = now.getFullYear();
+      let targetDate = new Date(`September 4, ${targetYear} 00:00:00`);
+
+      // If Sep 4 has passed this year, count down to next year
+      if (now > targetDate) {
+        targetDate = new Date(`September 4, ${targetYear + 1} 00:00:00`);
+      }
+
+      const diff = targetDate - now;
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+      document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+      document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+      document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Love Meter Click Action
+    function showLoveMsg() {
+      const msg = document.getElementById('love-message');
+      msg.style.display = 'block';
+      msg.innerText = "Error: Love Meter Overflowed! I love you 10,000,000% ♥";
+    }
+    
+        const reasons = [
+            "ap  ki wo 2 hassen ankhin jo mujha pyar main pagal kar datin hn.",
+            "ap ka wo hass ka baat karna.",
+            "ap ka ya naram or nazuk sa budan more and mutton.",
+            "ap ka honton ki lakirain jo mara honton to apni taraf mmlatain hn.",
+            "ap ki lamba aur curling ball",
+            "ap ka mujha i love ypu bolna aur khamba bhi.",
+            "ap ka mujha asa dakhna ka main bulkul ak ka hoon",
+            "ap ka golo mulu gall",
+            "ap ka cute and sexy dimple",
+            "ap the naram lahzah",
+            "ap ka pyra hona",
+            "ap ka mara sath hona har waqt",
+            "the high estrogen level ",
+            "the cupcales also",
+            "sharma bhi ap ka",
+            "ap ko aur bhi suna na baby",
+            "maara bacha or suna chata na",
+            "hehehehheheheheheh",
+            "ap itni pyri hn tareefain khatam hi nhi hotin",
+            "ap ki ankhain bhi bohat pyri hnn",
+            "soft bhi pillow ki tarha bohat jagah sa",
+            "dill bhi bohat soft ha or externaly bhi",
+            "you are the sexiest person on the plant earth",
+            "you always make me hard ufffffff",
+            "ap ki kamer bhi bohat soft haaaaaaa",
+            "ummmmmmmmmmmmmmaaaaaaaahhhhhhhhh",
+            "mara chubby baby ki belly bhii",
+            "the wet good girl down there",
+            " Aap ki pyaari si muskuraahat jo mera din bana deti hai.",
+             "Jis tarah aap meri chhoti chhoti baaton ka khayal rakhti hain.",
+             "Aap ki aankhen jo bina bole sab kuch keh deti hain.",
+   "Jab aap gusse mein hoti hain tab bhi bohot cute lagti hain.",
+   "Aap ka mere saath hamesha mukhles rehna.",
+"Aap ki hansi jo mere har gham ko bhula deti hai.",
+   "Jis tarah aap mujhe samajhti hain, koi aur nahi samajh sakta.",
+   "Aap ki awaaz jo mere dil ko sukoon deti hai.",
+   "Aap ka har baat par bacchon ki tarah zid karna.",
+  " Jab aap mere liye care dikhati hain.",
+  " Aap ki woh masoomiyat jo mujhe aap se aur pyar karne par majboor karti hai.",
+  " Aap ka mere sath har haal mein khade rehna.",
+  " Aap ki styling aur aap ka classy taste.",
+  " Jab aap gussa hoke baithti hain aur phir khud hi maan jaati hain.",
+  " Aap ke sath beeta hua har ek lamha bohot special hai.",
+  " Aap ki batein jo kabhi khatam hi nahi hoti.",
+  " Jis tarah aap mujhe ek behtar insaan banati hain.",
+  " Aap ka mere har faislay par bharosa karna.",
+  " Aap ki paak aur saaf niyat.",
+  " Jab aap mujhe pyar se mera naam leti hain.",
+  " Aap ki nadaniyan jo mujhe hamesha hasati hain.",
+  " Aap ka mere khwabon ko apna samajhna.",
+  " Aap ki khushboo jo mujhe aap ki yaad dilati hai.",
+  " Jab aap mere sath hoti hain toh waqt ka pata hi nahi chalta.",
+  " Aap ka mere bure waqt mein mera hath thame rakhna.",
+  " Aap ki soft aur kind nature.",
+  " Jab aap jealous hoti hain aur chhupati hain.",
+  " Aap ka har dress mein bilkul pari jaisa lagna.",
+  " Aap ki cute si baatein jo mere chehre par smile le aati hain.",
+  " Aap ka meri life mein hona hi sab se badi blessing hai.",
+  " Jab aap mujhe bina kahe samajh jaati hain.",
+  " Aap ki respect aur tameez se baat karne ka andaz.",
+  " Aap ka mere sath har Chhoti baari khushi share karna.",
+  " Aap ki subah ki pehli message jo din haseen bana deti hai.",
+  " Aap ka raat ko late tak mere liye jaagna.",
+  " Aap ki positive vibe jo poore mahaul ko khushgawar bana deti hai.",
+  " Jab aap meri baaton par khilkhila kar hans deti hain.",
+  " Aap ka har rishte ko bohot ache se nibhana.",
+  " Aap ki zulfon ka bikharna aur aap ka unhe sambhalna.",
+  " Aap ka mere khayal rakhte hue mujhe daantna.",
+  " Jis tarah aap mujhe hamesha priority deti hain.",
+  " Aap ki cute si childish habits.",
+  " Aap ka mere mood swing ko sehna aur handle karna.",
+  " Aap ki baaton mein chupa hua behad pyar.",
+  " Jab aap apne future ke dreams mere sath share karti hain.",
+  " Aap ki honest advice jo hamesha sahi hoti hai.",
+  " Aap ka bina wajah mujhe miss karna aur batana.",
+  " Aap ki eyes ki sparkle jab aap khush hoti hain.",
+  " Aap ka mujhe apna sab se acha dost samajhna.",
+  " Jab aap mere liye koi pyaari si cheez karti hain.",
+  " Aap ka har mushkil waqt mein sabar dikhana.",
+  " Aap ki batein sun kar mera saara stress khatam ho jana.",
+  " Aap ka mujhe support karna jab koi aur nahi karta.",
+  " Aap ki pyari si tareefen jo mera confidence badhati hain.",
+  " Jab aap mere sath walking ya long drive par hoti hain.",
+  " Aap ka har situation mein calm rehne ki koshish karna.",
+  " Aap ki sharmili si muskuraahat.",
+  " Aap ka mujhe roz naye tarike se pyar karna.",
+  " Aap ki pyari si nazren jo mere dil ko chhu jaati hain.",
+  " Jab aap meri favorite cheezon ka khayal rakhti hain.",
+  " Aap ka mujhe samjhana jab main udaas hota hoon.",
+  " Aap ki har adaa jo doosron se alag aur pyari hai.",
+  " Aap ka mujhe apna hero samajhna.",
+  " Aap ki innocence jo aaj kal ke zamane mein rare hai.",
+  " Jab aap mujhe secretly dekhti hain aur phir nazren chura leti hain.",
+  " Aap ka har choti cheez par 'Thank you' aur 'Sorry' kehna.",
+  " Aap ki baaton mein chhupi hui gehrai.",
+  " Aap ka mere alawa kisi aur ko yeh jagah na dena.",
+  " Jab aap mujhse mashwara leti hain har baat mein.",
+  " Aap ki loyalty jo mere liye sab se keemti hai.",
+  " Aap ka mere sath cooking ya koi activity karna.",
+  " Aap ki smile jo kisi bhi bure din ko acha bana sakti hai.",
+  " Jab aap mujhse pyar se ruth jaati hain.",
+  " Aap ki simplicity aur natural beauty.",
+  " Aap ka mere gusse ko pyaarse thanda karna.",
+  " Aap ki mature baatein jo mujhe impress karti hain.",
+  " Jab aap mujhse apne sare secrets share karti hain.",
+  " Aap ka har festive occasion par bohot pyaari lagna.",
+  "Aap ki softness jo mere dil ko pighla deti hai.",
+  " Aap ka mere liye dua karna.",
+  " Jab aap mujhe protection aur warmth feel karwati hain.",
+  " Aap ki batein jo mere zehn mein din bhar chalti hain.",
+  " Aap ka hamesha mere sath loyal aur sachi rehna.",
+  " Aap ki cute si hand gestures jab aap baatein karti hain.",
+  " Jab aap mujhe kehti hain ke aap sirf meri hain.",
+  " Aap ka har surprise ko bohot khushi se accept karna.",
+  " Aap ki presence jo mere poore wajood ko complete karti hai.",
+  "Aap ka mere sath hona hi meri sab se badi jeet hai.",
+  " Kyunki aap se zyada pyaara aur koi ho hi nahi sakta.",
+  " Kyunki main aap se kal se zyada aur kal aane wale din se kam pyar karta hoon!"
+
+        ];
+
+        function generateReason() {
+            const randomIndex = Math.floor(Math.random() * reasons.length);
+            const reasonElement = document.getElementById('love-reason');
+            
+            // Add a quick fade effect
+            reasonElement.style.opacity = 0;
+            setTimeout(() => {
+                reasonElement.innerText = reasons[randomIndex];
+                reasonElement.style.opacity = 1;
+            }, 200);
+        }
+  </script>
+</body>
+</html>

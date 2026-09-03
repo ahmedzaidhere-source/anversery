@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Gallery of Grace — Dedicated to You 💕</title>
+  <style>
+    /* Elegant Dark-Rose Palette */
+    :root {
+      --bg-gradient: linear-gradient(135deg, #2D1121 0%, #170711 100%);
+      --card-bg: rgba(61, 23, 49, 0.6);
+      --accent-pink: #f472b6;
+      --text-main: #fce7f3;
+      --text-muted: #fda4af;
+      --overlay-bg: rgba(23, 7, 17, 0.96);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', 'Times New Roman', serif; /* A elegant font */
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      padding: 40px 10px;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* Modern Title Header */
+    .gallery-header {
+      margin-bottom: 60px;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(244, 114, 182, 0.2);
+    }
+
+    .gallery-header h1 {
+      font-size: 2.8rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .gallery-header p {
+      color: var(--accent-pink);
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    /* 30-Image Grid (Responsive) */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    /* Individual Image Card */
+    .gallery-item {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(236, 72, 153, 0.25);
+    }
+
+    /* Picture Styling */
+    .gallery-item img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover; /* Ensures images are cropped nicely */
+      display: block;
+      filter: grayscale(10%);
+      transition: filter 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      filter: grayscale(0%);
+    }
+
+    /* Caption Overlay (Elegant Hover) */
+    .caption-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(23, 7, 17, 0.9) 80%);
+      padding: 30px 20px 15px 20px;
+      text-align: left;
+      opacity: 0; /* Hidden by default */
+      transition: opacity 0.4s ease;
+    }
+
+    .gallery-item:hover .caption-overlay {
+      opacity: 1; /* Show on hover */
+    }
+
+    .caption-text {
+      color: var(--text-main);
+      font-weight: 300;
+      line-height: 1.4;
+      font-size: 0.95rem;
+    }
+
+    /* Static Bottom Caption (Minimal) */
+    .static-caption {
+      color: var(--text-muted);
+      padding: 10px 20px;
+      text-align: left;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(244, 114, 182, 0.1);
+    }
+
+    /* Lightbox Modal (Click to Zoom) */
+    .lightbox {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--overlay-bg);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: var(--text-muted);
+      font-family: sans-serif;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .gallery-header h1 { font-size: 2rem; }
+      .grid { grid-template-columns: 1fr; }
+      .gallery-item img { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <header class="gallery-header">
+      <h1>The Portfolio of Elegance</h1>
+      <p>30 Moments of Incomparable Grace — Dedicated to You ♥</p>
+    </header>
+
+    <div class="grid">
+      
+      <!-- IMAGE #1 -->
+      <div class="gallery-item" onclick="openLightbox('img_1')">
+        <!-- REPLACE THIS WITH YOUR REAL IMAGE URL -->
+        <img id="img_1" src="1.jpg" alt="Her Beauty Moment 1">
+        
+        <div class="caption-overlay">
+          <p class="caption-text">"Your smile is the dawn that ends my darkest night."</p>
+        </div>
+      </div>
+
+      <!-- IMAGE #2 -->
+      <div class="gallery-item" onclick="openLightbox('img_2')">
+        <img id="img_2" src="2.jpg" alt="Her Beauty Moment 2">
+        <div class="caption-overlay">
+          <p class="caption-text">"The stars are envious of the light I see in your eyes."</p>
+        </div>
+      </div>
+
+      <!-- IMAGE #3 -->
+      <div class="gallery-item" onclick="openLightbox('img_3')">
+        <img id="img_3" src="3.jpg" alt="Her Beauty Moment 3">
+        <div class="caption-overlay">
+          <p class="caption-text">"Where your gaze rests, peace begins."</p>
+        </div>
+      </div>
+
+      <!-- IMAGE #4 -->
+      <div class="gallery-item" onclick="openLightbox('img_4')">
+        <img id="img_4" src="4.jpg" alt="Her Beauty Moment 4">
+        <div class="caption-overlay">
+          <p class="caption-text">"You carry an inner light that makes the moon seem faint."</p>
+        </div>
+      </div>
+
+      <!-- IMAGE #5 -->
+      <div class="gallery-item" onclick="openLightbox('img_5')">
+        <img id="img_5" src="5.jpg" alt="Her Beauty Moment 5">
+        <div class="caption-overlay">
+          <p class="caption-text">"Beauty isn't an act; it's the air you simply breathe."</p>
+        </div>
+      </div>
+
+      <!-- IMAGE #6 -->
+      <div class="gallery-item" onclick="openLightbox('img_6')">
+        <img id="img_6" src="6.jpg" alt="Her Beauty Moment 6">
+        <div class="caption-overlay">
+          <p class="caption-text">"Every time I think you are perfect, you define a new perfection."</p>
+        </div>
+      </div>
+
+      <!-- IMAGE #7 -->
+      <div class="gallery-item" onclick="openLightbox('img_7')">
+        <img id="img_7" src="7.jpg" alt="Her Beauty Moment 7">
+        <div class="caption-overlay">
+          <p class="caption-text">"You are the poem my heart never knew it was writing."</p>
+        </div>
+      </div>
+
+      <!-- IMAGE #8 -->
+      <div class="gallery-item" onclick="openLightbox('img_8')">
+        <img id="img_8" src="8.jpg" alt="Her Beauty Moment 8">
+        <div class="caption-overlay">
+          <p class="caption-text">"Your voice is the melody I need on my quietest days."</p>
+        </div>
+      </div>
+
+      <!-- IMAGE #9 -->
+      <div class="gallery-item" onclick="openLightbox('img_9')">
+        <img id="img_9" src="9.jpg" alt="Her Beauty Moment 9">
+        <div class="caption-overlay">
+          <p class="caption-text">"Nature must have paused to admire itself when it made you."</p>
+        </div>
+      </div>
+
+      <!-- IMAGE #10 -->
+      <div class="gallery-item" onclick="openLightbox('img_10')">
+        <img id="img_10" src="10.jpg" alt="Her Beauty Moment 10">
+        <div class="caption-overlay">
+          <p class="caption-text">"The world is better just by having you in it."</p>
+        </div>
+      </div>
+
+      <!-- (REPEATING GRID PATTERN for 20 MORE IMAGES WITH UNIQUE LINES) -->
+      
+      <!-- IMAGE #11 -->
+      <div class="gallery-item" onclick="openLightbox('img_11')">
+        <img id="img_11" src="11.jpg" alt="Her Beauty Moment 11">
+        <div class="caption-overlay">
+          <p class="caption-text">"Elegance isn't noticed; it's remembered, just like you."</p>
+        </div>
+      </div>
+      <!-- IMAGE #12 -->
+      <div class="gallery-item" onclick="openLightbox('img_12')">
+        <img id="img_12" src="12.jpg" alt="Her Beauty Moment 12">
+        <div class="caption-overlay">
+          <p class="caption-text">"Your confidence shines brighter than any jewel."</p>
+        </div>
+      </div>
+      <!-- IMAGE #13 -->
+      <div class="gallery-item" onclick="openLightbox('img_13')">
+        <img id="img_13" src="13.jpg" alt="Her Beauty Moment 13">
+        <div class="caption-overlay">
+          <p class="caption-text">"Your beauty, to me, is like an endless ocean I can't look away from."</p>
+        </div>
+      </div>
+      <!-- IMAGE #14 -->
+      <div class="gallery-item" onclick="openLightbox('img_14')">
+        <img id="img_14" src="14.jpg" alt="Her Beauty Moment 14">
+        <div class="caption-overlay">
+          <p class="caption-text">"You possess a beauty that commands silence and awes."</p>
+        </div>
+      </div>
+      <!-- IMAGE #15 -->
+      <div class="gallery-item" onclick="openLightbox('img_15')">
+        <img id="img_15" src="15.jpg" alt="Her Beauty Moment 15">
+        <div class="caption-overlay">
+          <p class="caption-text">"Your heart must be as kind as your face is stunning."</p>
+        </div>
+      </div>
+      <!-- IMAGE #16 -->
+      <div class="gallery-item" onclick="openLightbox('img_16')">
+        <img id="img_16" src="136.jpg" alt="Her Beauty Moment 16">
+        <div class="caption-overlay">
+          <p class="caption-text">"A masterpiece doesn't try to hide its details; it just makes you look."</p>
+        </div>
+      </div>
+      <!-- IMAGE #17 -->
+      <div class="gallery-item" onclick="openLightbox('img_17')">
+        <img id="img_17" src="17.jpg" alt="Her Beauty Moment 17">
+        <div class="caption-overlay">
+          <p class="caption-text">"Your essence is a comfort I didn't know I needed."</p>
+        </div>
+      </div>
+      <!-- IMAGE #18 -->
+      <div class="gallery-item" onclick="openLightbox('img_18')">
+        <img id="img_18" src="18.jpg" alt="Her Beauty Moment 18">
+        <div class="caption-overlay">
+          <p class="caption-text">"I trace the history of love in the grace of your walk."</p>
+        </div>
+      </div>
+      <!-- IMAGE #19 -->
+      <div class="gallery-item" onclick="openLightbox('img_19')">
+        <img id="img_19" src="19.jpg" alt="Her Beauty Moment 19">
+        <div class="caption-overlay">
+          <p class="caption-text">"You are the perfect symmetry of kindness and allure."</p>
+        </div>
+      </div>
+      <!-- IMAGE #20 -->
+      <div class="gallery-item" onclick="openLightbox('img_20')">
+        <img id="img_20" src="20.jpg" alt="Her Beauty Moment 20">
+        <div class="caption-overlay">
+          <p class="caption-text">"If beauty was a time, you would be an eternal spring."</p>
+        </div>
+      </div>
+      
+      <!-- IMAGE #21 -->
+      <div class="gallery-item" onclick="openLightbox('img_21')">
+        <img id="img_21" src="21.jpg" alt="Her Beauty Moment 21">
+        <div class="caption-overlay">
+          <p class="caption-text">"Your gaze makes the whole universe feel right."</p>
+        </div>
+      </div>
+      <!-- IMAGE #22 -->
+      <div class="gallery-item" onclick="openLightbox('img_22')">
+        <img id="img_22" src="22.jpg" alt="Her Beauty Moment 22">
+        <div class="caption-overlay">
+          <p class="caption-text">"I look at you and wonder how one person holds so much magic."</p>
+        </div>
+      </div>
+      <!-- IMAGE #23 -->
+      <div class="gallery-item" onclick="openLightbox('img_23')">
+        <img id="img_23" src="23.jpg" alt="Her Beauty Moment 23">
+        <div class="caption-overlay">
+          <p class="caption-text">"You bring a sweetness that lingers, even when you're gone."</p>
+        </div>
+      </div>
+      <!-- IMAGE #24 -->
+      <div class="gallery-item" onclick="openLightbox('img_24')">
+        <img id="img_24" src="24.jpg" alt="Her Beauty Moment 24">
+        <div class="caption-overlay">
+          <p class="caption-text">"The way you move has the poetry of a quiet river."</p>
+        </div>
+      </div>
+      <!-- IMAGE #25 -->
+      <div class="gallery-item" onclick="openLightbox('img_25')">
+        <img id="img_25" src="25.jpg" alt="Her Beauty Moment 25">
+        <div class="caption-overlay">
+          <p class="caption-text">"Your style doesn't need to shout to be noticed."</p>
+        </div>
+      </div>
+      <!-- IMAGE #26 -->
+      <div class="gallery-item" onclick="openLightbox('img_26')">
+        <img id="img_26" src="26.jpg" alt="Her Beauty Moment 26">
+        <div class="caption-overlay">
+          <p class="caption-text">"Beauty that inspires is beauty at its best, just like yours."</p>
+        </div>
+      </div>
+      <!-- IMAGE #27 -->
+      <div class="gallery-item" onclick="openLightbox('img_27')">
+        <img id="img_27" src="27.jpg" alt="Her Beauty Moment 27">
+        <div class="caption-overlay">
+          <p class="caption-text">"I can never take you for granted; you're breathtaking every time."</p>
+        </div>
+      </div>
+      <!-- IMAGE #28 -->
+      <div class="gallery-item" onclick="openLightbox('img_28')">
+        <img id="img_28" src="28.jpg" alt="Her Beauty Moment 28">
+        <div class="caption-overlay">
+          <p class="caption-text">"Your beauty is the anchor in my drifting soul."</p>
+        </div>
+      </div>
+      <!-- IMAGE #29 -->
+      <div class="gallery-item" onclick="openLightbox('img_29')">
+        <img id="img_29" src="29.jpg" alt="Her Beauty Moment 29">
+        <div class="caption-overlay">
+          <p class="caption-text">"I count the stars by the light you leave behind."</p>
+        </div>
+      </div>
+      <!-- IMAGE #30 -->
+      <div class="gallery-item" onclick="openLightbox('img_30')">
+        <img id="img_30" src="30.jpg" alt="Her Beauty Moment 30">
+        <div class="caption-overlay">
+          <p class="caption-text">"Your presence is the art I've always wanted to admire."</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Static Footer -->
+    <footer style="margin-top: 60px; color: var(--text-muted); font-size: 0.9rem;">
+      <p>30 Reasons to celebrate your presence. Always & Forever ♥</p>
+    </footer>
+
+  </div>
+
+  <!-- Lightbox Modal (JavaScript Powered Zoom) -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="close-lightbox">&times;</span>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Zoomed View">
+  </div>
+
+  <script>
+    // Lightbox Control JavaScript
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(imgId) {
+      const clickedImg = document.getElementById(imgId);
+      lightboxImg.src = clickedImg.src; // Set the zoomed image source
+      lightbox.classList.add('active'); // Show modal
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active'); // Hide modal
+    }
+
+    // Optional: Press escape to close
+    document.addEventListener('keydown', function(event) {
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  </script>
+
+</body>
+</html>

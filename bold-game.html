@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Long Distance Bold Night 🔥📹</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #18030e 0%, #360017 50%, #58001d 100%);
+      --card-bg: rgba(88, 0, 29, 0.45);
+      --accent-red: #ff1744;
+      --text-light: #fff0f3;
+      --border-glow: #ff5252;
+      --gold-accent: #ffd700;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-light);
+      padding: 30px 15px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 650px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent-red);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px rgba(255, 23, 68, 0.7);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 25px;
+      color: var(--gold-accent);
+      font-weight: 600;
+    }
+
+    /* Navigation Tabs */
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-light);
+      border: 1px solid var(--border-glow);
+      padding: 12px 18px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-red);
+      color: white;
+      box-shadow: 0 0 20px rgba(255, 23, 68, 0.8);
+      border-color: var(--accent-red);
+    }
+
+    /* Game Panels */
+    .game-panel {
+      display: none;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border-radius: 24px;
+      padding: 35px 20px;
+      border: 1px solid rgba(255, 82, 82, 0.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    }
+
+    .game-panel.active {
+      display: block;
+    }
+
+    .action-btn {
+      background: var(--accent-red);
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      margin: 10px 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .action-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--accent-red);
+    }
+
+    /* Challenge Display Box */
+    .challenge-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px dashed var(--border-glow);
+      padding: 30px 20px;
+      border-radius: 20px;
+      margin: 20px 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.6;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+
+    /* Dice Box */
+    .dice-display {
+      font-size: 4.5rem;
+      margin: 10px 0;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--border-glow);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.05rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Bold Night 📹🔥</h1>
+    <p class="subtitle">Turn On Your Camera & Play 😈</p>
+
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(0)">1. Cam Truth / Dare</button>
+      <button class="tab-btn" onclick="switchTab(1)">2. Video Spice Dice</button>
+      <button class="tab-btn" onclick="switchTab(2)">3. Long Distance Confessions</button>
+    </div>
+
+    <div class="game-panel active">
+      <h2 style="color: var(--border-glow);">Truth or Dare 📸</h2>
+      <p style="font-size: 0.95rem; opacity: 0.85; margin-top: 5px;">Must be executed right in front of the camera!</p>
+
+      <div id="td-display" class="challenge-box">Ready for the screen? Select Truth or Dare!</div>
+
+      <div>
+        <button class="action-btn" onclick="getTruth()">Truth 🤫</button>
+        <button class="action-btn" onclick="getDare()">Dare 💋</button>
+      </div>
+    </div>
+
+    <div class="game-panel">
+      <h2 style="color: var(--border-glow);"> Spice Dice 🎲</h2>
+      <p style="font-size: 0.95rem; opacity: 0.85; margin-top: 5px;">Roll the die to unlock an escalating video challenge!</p>
+
+      <div id="dice-icon" class="dice-display">🎲</div>
+      <div id="dice-display" class="challenge-box">Roll the dice to see what your camera gets to see!</div>
+
+      <button class="action-btn" onclick="rollDice()">Roll The Dice 🔥</button>
+    </div>
+
+    <div class="game-panel">
+      <h2 style="color: var(--border-glow);">Uncut Video Confessions</h2>
+      <p style="font-size: 0.95rem; opacity: 0.85; margin-top: 5px;">If you HAVE done it, look straight into the camera and confess! 🥂</p>
+
+      <div id="nhie-display" class="challenge-box">Click below to reveal a confession prompt!</div>
+
+      <button class="action-btn" onclick="getNHIE()">Next Statement ➔</button>
+    </div>
+
+    <a href="index.html" class="home-link">← Back to Anniversary Home Page</a>
+  </div>
+
+  <script>
+    /* Tab Switcher */
+    function switchTab(index) {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const panels = document.querySelectorAll('.game-panel');
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+        panels[i].classList.toggle('active', i === index);
+      });
+    }
+
+    /* GAME 1: CAM TRUTH OR DARE DATA */
+    const truths = [
+      "What is the wild fantasy about me that crosses your mind when you watch me on video calls?",
+      "Which specific outfit or look that I've worn on camera turned you on the most?",
+      "If I were in your room right now instead of on this screen, what is the FIRST thing you would do to me?",
+      "What is a secret seductive thought you had about me today before we called?",
+      "What part of my face or body do you stare at the most when we are on video call?",
+      "Have you ever re-watched my videos or photos at night when you missed my touch?",
+      "What is one dirty thing you want me to do to you the exact second we meet in person?"
+    ];
+
+    const dares = [
+      "Bring your face super close to the lens, look directly into my eyes for 15 seconds, and blow me a slow, passionate kiss.",
+      "Bring the mic right up to your lips and whisper your filthiest desire for me in a low, breathy voice.",
+      "Show me your best seductive walk on camera coming toward the phone/laptop.",
+      "Bite your lower lip softly, stare into the camera, and tell me: 'I'm all yours tonight.'",
+      "Adjust your camera angle to show off your favorite outfit feature and do a slow 360 turn for me.",
+      "Unbutton or adjust your top/shirt on camera while keeping eye contact with me for 10 seconds.",
+      "Close your eyes on camera and describe in explicit detail how you would kiss me right now if I were there and the face is expected in this case.",
+      "Tell me about the places you want me to lick, bite with lip without anyboundries and anything "
+    ];
+
+    function getTruth() {
+      const random = truths[Math.floor(Math.random() * truths.length)];
+      document.getElementById('td-display').innerHTML = "<span style='color:#ffd700'>TRUTH:</span> " + random;
+    }
+
+    function getDare() {
+      const random = dares[Math.floor(Math.random() * dares.length)];
+      document.getElementById('td-display').innerHTML = "<span style='color:#ff1744'>DARE:</span> " + random;
+    }
+
+    /* GAME 2: VIDEO SPICE DICE DATA */
+    const diceChallenges = [
+      { level: 1, icon: "⚀", text: "1 : Put your hand on the screen over where my face is and tell me one thing you adore about me." },
+      { level: 2, icon: "⚁", text: "2 : moan like you are having an intanse intercourse with me and you are losing your mind." },
+      { level: 3, icon: "⚂", text: "3 :  whisper and send a voice note of a wild fantasy into the mic so I can only hear your voice." },
+      { level: 4, icon: "⚃", text: "4 : Angle the camera to show your collarbone or waist, hold it for 20 seconds, and tease me." },
+      { level: 5, icon: "⚄", text: "5 : Look directly into the camera lens with your most passionate expression for 30 seconds without laughing or breaking contact." },
+      { level: 6, icon: "⚅", text: "6 : You get to command 1 bold pose, camera angle, or outfit adjustment from your partner right now!" }
+    ];
+
+    function rollDice() {
+      const randomObj = diceChallenges[Math.floor(Math.random() * diceChallenges.length)];
+      document.getElementById('dice-icon').innerText = randomObj.icon;
+      document.getElementById('dice-display').innerText = randomObj.text;
+    }
+
+    /* GAME 3: UNCUT VIDEO CONFESSIONS DATA */
+    const nhieStatements = [
+      "Never have I ever taken a spicy selfie or video intended just for you.",
+      "Never have I ever kissed the phone screen while looking at your picture.",
+      "Never have I ever wished we could turn off the cameras and just meet right now.",
+      "Never have I ever gotten completely distracted by your looks while we were talking about something serious.",
+      "Never have I ever imagined a super romantic and wild hotel night with you while on a video call.",
+      "Never have I ever felt my heart race just from hearing your voice drop low on call.",
+      "Never have I ever held back a super bold statement on call because I was too shy."
+    ];
+
+    function getNHIE() {
+      const random = nhieStatements[Math.floor(Math.random() * nhieStatements.length)];
+      document.getElementById('nhie-display').innerText = random;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Future Family Game 💕</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(180deg, #fce7f3 0%, #fbcfe8 50%, #f472b6 100%);
+      --card-bg: #ec4899;
+      --text-dark: #831843;
+      --accent-pink: #be185d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      padding: 30px 15px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 650px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--accent-pink);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    /* Tab Buttons */
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .tab-btn {
+      background: white;
+      color: var(--accent-pink);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--card-bg);
+      color: white;
+    }
+
+    /* Game Card Panels */
+    .game-panel {
+      display: none;
+      background: white;
+      border-radius: 24px;
+      padding: 30px 20px;
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.25);
+    }
+
+    .game-panel.active {
+      display: block;
+    }
+
+    .action-btn {
+      background: var(--card-bg);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .action-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Inputs & Selects */
+    select, input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: 2px solid #f472b6;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .result-box {
+      margin-top: 25px;
+      padding: 20px;
+      background: #fce7f3;
+      border-radius: 16px;
+      border: 2px dashed var(--card-bg);
+      display: none;
+    }
+
+    .result-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent-pink);
+      margin: 10px 0;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--accent-pink);
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Our Future Family Predictor 👶</h1>
+    <p class="subtitle">A little romantic game to dream about our future together ♥</p>
+
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(0)">1. Crystal Ball</button>
+      <button class="tab-btn" onclick="switchTab(1)">2. Name Picker</button>
+      <button class="tab-btn" onclick="switchTab(2)">3. Parent Style</button>
+    </div>
+
+    <div class="game-panel active">
+      <h2 style="color: var(--accent-pink);">How Many Kids Will We Have?</h2>
+      <p style="font-size: 0.9rem; margin-top: 5px;">Answer these 2 questions to unlock our future destiny!</p>
+
+      <div style="text-align: left; margin-top: 20px;">
+        <label style="font-weight: bold;">Where is our dream vacation house?</label>
+        <select id="q1">
+          <option value="1">A cozy villa near the beach 🏖️</option>
+          <option value="2">A beautiful cottage in the mountains 🏔️</option>
+          <option value="3">A big modern house in the city 🏙️</option>
+        </select>
+
+        <label style="font-weight: bold;">What is our ideal weekend vibe?</label>
+        <select id="q2">
+          <option value="1">Quiet movie night & cuddle 🍿</option>
+          <option value="2">Road trip & outdoor picnic 🚗</option>
+          <option value="3">Big family dinner with lots of noise 🍕</option>
+        </select>
+      </div>
+
+      <button class="action-btn" onclick="predictKids()">Predict Our Future 🔮</button>
+
+      <div id="prediction-result" class="result-box">
+        <div style="font-size: 1.1rem; font-weight: bold;">The Destiny Says We Will Have:</div>
+        <div class="result-number" id="kids-count">0</div>
+        <p id="kids-desc" style="font-weight: 600; line-height: 1.5;"></p>
+      </div>
+    </div>
+
+    <div class="game-panel">
+      <h2 style="color: var(--accent-pink);">Baby Name Generator 💕</h2>
+      <p style="font-size: 0.9rem; margin-top: 5px;">Click below to pick a cute future name idea for us!</p>
+
+      <button class="action-btn" onclick="generateName()">Generate Cute Name ✨</button>
+
+      <div id="name-result" class="result-box">
+        <p style="font-weight: bold; color: var(--accent-pink);">Future Baby Name Idea:</p>
+        <div id="generated-name" style="font-size: 1.8rem; font-weight: bold; margin: 10px 0;">—</div>
+        <p id="name-meaning" style="font-style: italic;"></p>
+      </div>
+    </div>
+
+    <div class="game-panel">
+      <h2 style="color: var(--accent-pink);">Who Will Be The Strict Parent?</h2>
+      <p style="font-size: 0.9rem; margin-top: 5px;">Choose who is more likely to do each action!</p>
+
+      <div style="text-align: left; margin-top: 15px;">
+        <label style="font-weight: bold;">Who will buy them way too many toys?</label>
+        <select id="p1">
+          <option>Aap (Fizah jaan)</option>
+          <option>Me (Zaid All your)</option>
+        </select>
+
+        <label style="font-weight: bold;">Who will let them eat ice cream before dinner?</label>
+        <select id="p2">
+          <option>Aap (Fizah jaan)</option>
+          <option>Me (Zaid All your)</option>
+        </select>
+      </div>
+
+      <button class="action-btn" onclick="checkParentStyle()">Reveal Our Roles 🎭</button>
+
+      <div id="parent-result" class="result-box">
+        <p id="parent-text" style="font-weight: bold; line-height: 1.6;"></p>
+      </div>
+    </div>
+
+    <a href="index.html" class="home-link">← Back to Anniversary Home Page</a>
+  </div>
+
+  <script>
+    /* Tab Switcher */
+    function switchTab(index) {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const panels = document.querySelectorAll('.game-panel');
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+        panels[i].classList.toggle('active', i === index);
+      });
+    }
+
+    /* Game 1: Predict Kids */
+    function predictKids() {
+      const v1 = parseInt(document.getElementById('q1').value);
+      const v2 = parseInt(document.getElementById('q2').value);
+      const total = v1 + v2;
+
+      let count = 2;
+      let desc = "";
+
+      if (total <= 2) {
+        count = 2;
+        desc = "A perfect pair! One boy & one girl to keep our world complete and full of love! 👦👧";
+      } else if (total <= 4) {
+        count = 3;
+        desc = "A cheerful trio! Our house will be filled with endless laughter, games, and happiness! 👶👦👧";
+      } else {
+        count = 4;
+        desc = "A big happy team! We will need a bigger car because our love is multiplying! 👨‍👩‍👧‍👦";
+      }
+
+      document.getElementById('kids-count').innerText = count + " Kids!";
+      document.getElementById('kids-desc').innerText = desc;
+      document.getElementById('prediction-result').style.display = 'block';
+    }
+
+    /* Game 2: Name Generator */
+    const names = [
+      { name: "Ayla / Ayan", meaning: "Moonlight & Blessing ✨" },
+      { name: "Zoya / Zain", meaning: "Loving & Graceful 🌸" },
+      { name: "Inaya / Rayan", meaning: "Gift of God & Paradise 🌟" },
+      { name: "Mirha / Mikael", meaning: "Light of Allah & Angel 👼" },
+      { name: "Aria / Arham", meaning: "Noble & Compassionate 💕" }
+    ];
+
+    function generateName() {
+      const random = names[Math.floor(Math.random() * names.length)];
+      document.getElementById('generated-name').innerText = random.name;
+      document.getElementById('name-meaning').innerText = "Meaning: " + random.meaning;
+      document.getElementById('name-result').style.display = 'block';
+    }
+
+    /* Game 3: Parent Style */
+    function checkParentStyle() {
+      const p1 = document.getElementById('p1').value;
+      const p2 = document.getElementById('p2').value;
+
+      document.getElementById('parent-text').innerHTML = 
+        `Verdict: <b>${p1}</b> is going to spoil our children with love, and <b>${p2}</b> is going to be the fun best-friend parent! Together we'll be the best team ever! ❤️`;
+      document.getElementById('parent-result').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

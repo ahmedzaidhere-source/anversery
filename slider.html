@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories & Love 💕</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+
+    :root {
+      --bg-gradient: linear-gradient(180deg, #fce7f3 0%, #fbcfe8 50%, #f472b6 100%);
+      --card-bg: #ec4899;
+      --text-dark: #831843;
+      --accent-pink: #be185d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      padding: 40px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 750px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Cute Quote Box */
+    .quote-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px 20px;
+      margin-bottom: 30px;
+      border: 2px solid white;
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.2);
+    }
+
+    .urdu-quote {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      font-size: 1.8rem;
+      line-height: 2.2;
+      color: #be185d;
+      margin-bottom: 15px;
+      direction: rtl;
+    }
+
+    .english-translation {
+      font-size: 1rem;
+      color: var(--text-dark);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    /* Photo Slider Frame */
+    .slider-container {
+      position: relative;
+      max-width: 600px;
+      height: 400px;
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(190, 24, 93, 0.3);
+      border: 4px solid white;
+      background: var(--card-bg);
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Overlay Badge */
+    .slide-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(190, 24, 93, 0.8);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Slider Buttons */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--accent-pink);
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.2s;
+      z-index: 10;
+    }
+
+    .nav-btn:hover {
+      background: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .prev-btn { left: 15px; }
+    .next-btn { right: 15px; }
+
+    /* Dots Indicator */
+    .dots-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .dot.active {
+      background: var(--accent-pink);
+      transform: scale(1.2);
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--accent-pink);
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Cutest Urdu Quote Section -->
+    <div class="quote-card">
+      <div class="urdu-quote">
+        "ساری دنیا کی خوشیاں ایک طرف،<br>اور تمہاری مسکراہٹ کا سکون ایک طرف۔"
+      </div>
+      <div class="english-translation">
+        "All the happiness of the world on one side,<br>and the peace of your smile on the other." ♥
+      </div>
+    </div>
+
+    <!-- Couple Photo Slider -->
+    <div class="slider-container">
+      <button class="nav-btn prev-btn" onclick="moveSlide(-1)">❮</button>
+      <button class="nav-btn next-btn" onclick="moveSlide(1)">❯</button>
+
+      <!-- SLIDE 1 (Replace image src with your photo) -->
+      <div class="slide active">
+        <img src="C1.jpg" alt="Couple Memory 1">
+        <div class="slide-caption">My Favorite Person ♥</div>
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="slide">
+        <img src="C3.png" alt="Couple Memory 2">
+        <div class="slide-caption">Every Moment With You ✨</div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide">
+        <img src="C2.jpg" alt="Couple Memory 3">
+        <div class="slide-caption">Forever & Always 🌹</div>
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="dots-container">
+      <span class="dot active" onclick="setSlide(0)"></span>
+      <span class="dot" onclick="setSlide(1)"></span>
+      <span class="dot" onclick="setSlide(2)"></span>
+    </div>
+
+    <a href="index.html" class="home-link">← Back to Anniversary Home Page</a>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(index) {
+      if (index >= slides.length) currentIndex = 0;
+      else if (index < 0) currentIndex = slides.length - 1;
+      else currentIndex = index;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentIndex);
+        dots[i].classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    function moveSlide(step) {
+      showSlide(currentIndex + step);
+    }
+
+    function setSlide(index) {
+      showSlide(index);
+    }
+
+    // Auto-advance slider every 4 seconds
+    setInterval(() => {
+      moveSlide(1);
+    }, 4000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess My Nicknames For You! 💕</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(180deg, #fce7f3 0%, #fbcfe8 50%, #f472b6 100%);
+      --card-bg: #ec4899;
+      --text-dark: #831843;
+      --accent-pink: #be185d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      padding: 30px 15px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--accent-pink);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .game-card {
+      background: white;
+      border-radius: 24px;
+      padding: 30px 20px;
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.25);
+    }
+
+    .word-display {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 12px;
+      color: var(--accent-pink);
+      margin: 20px 0;
+    }
+
+    .hint-box {
+      background: #fce7f3;
+      border: 2px dashed #f472b6;
+      padding: 15px;
+      border-radius: 16px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 25px;
+    }
+
+    .keyboard {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .key-btn {
+      background: #fce7f3;
+      color: var(--accent-pink);
+      border: 2px solid #f472b6;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .key-btn:hover {
+      background: var(--card-bg);
+      color: white;
+    }
+
+    .key-btn.disabled {
+      background: #e2e8f0;
+      border-color: #cbd5e1;
+      color: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    .status-msg {
+      font-size: 1.2rem;
+      font-weight: bold;
+      min-height: 30px;
+      margin-bottom: 15px;
+    }
+
+    .action-btn {
+      background: var(--card-bg);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      display: none;
+      margin: 0 auto;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--accent-pink);
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Guess My Nicknames For You! 🔤</h1>
+    <p class="subtitle">Guess the cute words I always call you! 💕</p>
+
+    <div class="game-card">
+      <div id="hint" class="hint-box">Hint: Loading...</div>
+      
+      <div id="word" class="word-display">_ _ _ _</div>
+
+      <div id="status" class="status-msg"></div>
+
+      <div id="keyboard" class="keyboard"></div>
+
+      <button id="next-btn" class="action-btn" onclick="nextWord()">Next Word ➔</button>
+    </div>
+
+    <a href="index.html" class="home-link">← Back to Anniversary Home Page</a>
+  </div>
+
+  <script>
+    const wordList = [
+      { word: "MOTI", hint: "Hint: What I call you when you eat all my snacks! 🍕😋" },
+      { word: "BONI", hint: "Hint: A super cute nickname reserved only for you! 🌸" },
+      { word: "CUTIE", hint: "Hint: Because you are the most adorable girl in the world! 💖" },
+      { word: "CHOTI", hint: "Hint: What I call you because of your cute height! 📏🤭" }
+    ];
+
+    let currentIdx = 0;
+    let guessedLetters = [];
+    let mistakes = 0;
+    const maxMistakes = 6;
+
+    function initGame() {
+      guessedLetters = [];
+      mistakes = 0;
+      document.getElementById('status').innerText = "";
+      document.getElementById('status').style.color = "var(--accent-pink)";
+      document.getElementById('next-btn').style.display = 'none';
+
+      const currentObj = wordList[currentIdx];
+      document.getElementById('hint').innerText = currentObj.hint;
+
+      updateWordDisplay();
+      createKeyboard();
+    }
+
+    function updateWordDisplay() {
+      const currentWord = wordList[currentIdx].word;
+      let display = "";
+      let isComplete = true;
+
+      for (let char of currentWord) {
+        if (guessedLetters.includes(char)) {
+          display += char + " ";
+        } else {
+          display += "_ ";
+          isComplete = false;
+        }
+      }
+
+      document.getElementById('word').innerText = display.trim();
+
+      if (isComplete) {
+        document.getElementById('status').innerText = "🎉 Yay! You guessed it right!";
+        document.getElementById('status').style.color = "green";
+        disableAllKeys();
+        document.getElementById('next-btn').style.display = 'block';
+      }
+    }
+
+    function createKeyboard() {
+      const kb = document.getElementById('keyboard');
+      kb.innerHTML = "";
+      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+      for (let letter of alphabet) {
+        const btn = document.createElement('button');
+        btn.className = 'key-btn';
+        btn.innerText = letter;
+        btn.onclick = () => handleGuess(letter, btn);
+        kb.appendChild(btn);
+      }
+    }
+
+    function handleGuess(letter, btn) {
+      btn.classList.add('disabled');
+      btn.disabled = true;
+
+      const currentWord = wordList[currentIdx].word;
+
+      if (currentWord.includes(letter)) {
+        guessedLetters.push(letter);
+        updateWordDisplay();
+      } else {
+        mistakes++;
+        if (mistakes >= maxMistakes) {
+          document.getElementById('status').innerText = "Oops! The word was: " + currentWord;
+          document.getElementById('status').style.color = "red";
+          disableAllKeys();
+          document.getElementById('next-btn').style.display = 'block';
+        } else {
+          document.getElementById('status').innerText = `Wrong guess! (${mistakes}/${maxMistakes} tries)`;
+        }
+      }
+    }
+
+    function disableAllKeys() {
+      const keys = document.querySelectorAll('.key-btn');
+      keys.forEach(k => {
+        k.disabled = true;
+        k.classList.add('disabled');
+      });
+    }
+
+    function nextWord() {
+      currentIdx++;
+      if (currentIdx < wordList.length) {
+        initGame();
+      } else {
+        document.getElementById('hint').innerText = "🏆 Game Completed!";
+        document.getElementById('word').innerText = "I LOVE YOU! ❤️";
+        document.getElementById('keyboard').innerHTML = "";
+        document.getElementById('status').innerText = "You know all my secret nicknames for you!";
+        document.getElementById('next-btn').style.display = 'none';
+      }
+    }
+
+    initGame();
+  </script>
+</body>
+</html>
